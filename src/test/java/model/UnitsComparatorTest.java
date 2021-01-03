@@ -70,7 +70,7 @@ class UnitsComparatorTest {
 		Mockito.when(producto2Mock.getNumber()).thenReturn(2);
 		
 		int result = comparador.compare(producto1Mock, producto2Mock);
-		assertTrue(result >= 1, "Se espera un número positivo (cantidad de producto 1 es mayor que la del 2)");
+		assertTrue(result <= -1, "Se espera un número positivo (cantidad de producto 1 es mayor que la del 2)");
 	}
 	
 	@Test
@@ -81,7 +81,7 @@ class UnitsComparatorTest {
 		Mockito.when(producto2Mock.getNumber()).thenReturn(2);
 		
 		int result = comparador.compare(producto1Mock, producto2Mock);
-		assertTrue(result <= -1, "Se espera un número negativo (cantidad de producto 2 es mayor que la del 1)");
+		assertTrue(result >= 1, "Se espera un número negativo (cantidad de producto 2 es mayor que la del 1)");
 	}
 	
 	@Test

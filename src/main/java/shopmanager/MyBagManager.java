@@ -6,6 +6,7 @@ package shopmanager;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -85,7 +86,7 @@ public class MyBagManager implements BagManager {
 	@Override
 	public Collection<Product> getBag() {
 			
-		return (List<Product>) cesta.values();
+		return (Collection<Product>) cesta.values();
 	}
 
 	@Override
@@ -130,7 +131,8 @@ public class MyBagManager implements BagManager {
 	@Override
 	public Iterator<Product> getUnitsIterator(){
 		// Ordena la cesta segun las unidades de producto y devuelve un tipo iterador
-		List<Product> OrdenarCesta = (List<Product>) this.getBag();
+		Collection<Product> Cesta = this.getBag();
+		List<Product> OrdenarCesta = new ArrayList<Product>(Cesta);
 		Collections.sort(OrdenarCesta, new UnitsComparator());
 		
 		return OrdenarCesta.listIterator();
