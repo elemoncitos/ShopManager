@@ -20,5 +20,5 @@ public class IdComparator implements Comparator<Product> {
 		return p1.getId().equals(p2.getId());
 	}
 
-	
 }
+
