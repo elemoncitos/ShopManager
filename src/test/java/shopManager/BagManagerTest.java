@@ -151,8 +151,10 @@ class BagManagerTest {
 		Mockito.when(producto2Mock.getNumber()).thenReturn(2);
 	
 		micestaTesteada.addProduct(producto1Mock);
-		assertFalse(micestaTesteada.findProduct("id1").isEmpty());
-		assertEquals(1,micestaTesteada.findProduct("id1").get().getNumber(),"El producto insertado debía tener una unidad");
+
+		assertTrue(micestaTesteada.findProduct("id1").isPresent());
+		assertEquals(1,micestaTesteada.findProduct("id1").get().getNumber(),"El producto insertado deb�a tener una unidad");
+
 		micestaTesteada.addProduct(producto2Mock);
 		assertEquals(2,micestaTesteada.findProduct("id2").get().getNumber(),"El producto insertado debía tener dos unidades");
 		assertTrue(micestaTesteada.findProduct("id1").isPresent());
@@ -192,9 +194,10 @@ class BagManagerTest {
 	    	assertEquals("No hay suficientes unidades en el Stock, sólo quedan 0",e.getMessage(),"El mensaje de la excepción no es correcto");
 	
 	    }   
-	    //Aseguro que si no había suficientes unidades no se ha agregado a la cesta
-	    assertTrue(micestaTesteada.findProduct("id1").isEmpty(),"Se agrega un producto cuando no había suficientes unidades");
-	    assertFalse(micestaTesteada.findProduct("id1").isPresent(),"Se agrega un producto cuando no había suficientes unidades");
+
+	    //Aseguro que si no hab�a suficientes unidades no se ha agregado a la cesta
+	  
+	    assertFalse(micestaTesteada.findProduct("id1").isPresent(),"Se agrega un producto cuando no hab�a suficientes unidades");
 	    
 	    //Ahora pruebo la gestión de la excepción NotInStock, no se debe agregar a la cesta y debe lanzar la excepción
 	    //aseguro que parto de la cesta vacía
@@ -208,9 +211,10 @@ class BagManagerTest {
 	    	assertEquals("El producto con id id1 no existe en el Stock",e.getMessage(),"El mensaje de la excepción no es correcto");
 	
 	    }   
-	  //Aseguro que si no existía en el stock no se ha agregado a la cesta
-	    assertTrue(micestaTesteada.findProduct("id1").isEmpty(),"Se agrega un producto que no existe en el stock");
-	    assertFalse(micestaTesteada.findProduct("id1").isPresent(),"Se agrega un producto que no existe en el stock");
+
+	  //Aseguro que si no exist�a en el stock no se ha agregado a la cesta
+	   assertFalse(micestaTesteada.findProduct("id1").isPresent(),"Se agrega un producto que no existe en el stock");
+
 	}
 
 	/**
@@ -349,7 +353,7 @@ class BagManagerTest {
 				trazador.info(e.getMessage());
 				fail("Fallo crítico mientras se insertaban los productos");
 			}
-                        Iterator<Product> myIterator;
+            Iterator<Product> myIterator;
 			try 
 			{
 				myIterator= micestaTesteada.getIdIterator();
@@ -359,6 +363,7 @@ class BagManagerTest {
 				trazador.info(e.getMessage());
 				fail("Fallo crítico mientras se intentaba conseguir el iterador");
 			}
+			myIterator= micestaTesteada.getIdIterator();
 
 			if(!myIterator.hasNext()) 
 			{

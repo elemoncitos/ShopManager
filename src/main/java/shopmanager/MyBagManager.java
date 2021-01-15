@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 import exceptions.NoEnoughStock;
@@ -128,12 +128,25 @@ public class MyBagManager implements BagManager {
 		cesta.clear();
 		
 	}
-	public ListIterator<Product> getIdIterator()
-	{
+	
+
+	@Override
+	public Iterator<Product> getPrizeIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterator<Product> getIdIterator() {
 		ArrayList<Product> productosEnCesta = new ArrayList<Product>(cesta.values());
 		Collections.sort(productosEnCesta, new IdComparator());
 		return productosEnCesta.listIterator();
-		
+	}
+
+	@Override
+	public Iterator<Product> getUnitsIterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
