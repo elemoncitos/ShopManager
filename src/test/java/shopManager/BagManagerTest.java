@@ -142,7 +142,7 @@ class BagManagerTest {
 		Mockito.when(producto2Mock.getNumber()).thenReturn(2);
 	
 		micestaTesteada.addProduct(producto1Mock);
-		assertFalse(micestaTesteada.findProduct("id1").isEmpty());
+		assertTrue(micestaTesteada.findProduct("id1").isPresent());
 		assertEquals(1,micestaTesteada.findProduct("id1").get().getNumber(),"El producto insertado debía tener una unidad");
 		micestaTesteada.addProduct(producto2Mock);
 		assertEquals(2,micestaTesteada.findProduct("id2").get().getNumber(),"El producto insertado debía tener dos unidades");
@@ -184,7 +184,7 @@ class BagManagerTest {
 	
 	    }   
 	    //Aseguro que si no había suficientes unidades no se ha agregado a la cesta
-	    assertTrue(micestaTesteada.findProduct("id1").isEmpty(),"Se agrega un producto cuando no había suficientes unidades");
+	  
 	    assertFalse(micestaTesteada.findProduct("id1").isPresent(),"Se agrega un producto cuando no había suficientes unidades");
 	    
 	    //Ahora pruebo la gestión de la excepción NotInStock, no se debe agregar a la cesta y debe lanzar la excepción
@@ -200,8 +200,7 @@ class BagManagerTest {
 	
 	    }   
 	  //Aseguro que si no existía en el stock no se ha agregado a la cesta
-	    assertTrue(micestaTesteada.findProduct("id1").isEmpty(),"Se agrega un producto que no existe en el stock");
-	    assertFalse(micestaTesteada.findProduct("id1").isPresent(),"Se agrega un producto que no existe en el stock");
+	   assertFalse(micestaTesteada.findProduct("id1").isPresent(),"Se agrega un producto que no existe en el stock");
 	}
 
 	/**

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Collection;
 import java.util.HashMap;
-
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 import exceptions.NoEnoughStock;
@@ -123,6 +123,24 @@ public class MyBagManager implements BagManager {
 		// Debería restaurar el stock, pero por ahora no se hace, sólo borra
 		cesta.clear();
 		
+	}
+
+	@Override
+	public Iterator<Product> getPrizeIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterator<Product> getIdIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterator<Product> getUnitsIterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -105,7 +105,7 @@ public class MyStockManager implements StockManager{
 	 * El compilador me avisa de que uso algo "deprecated" por eso añado la opción de compilación en gradle, para ver más detalle
 	*/
 	@Override
-	@Deprecated(since="0,0")
+	@Deprecated
 	protected void finalize() throws Throwable{
 		trazador.info("Finalizando el MyStockManager, apaga la instancia hazelcast");
 		hzInstance.shutdown();

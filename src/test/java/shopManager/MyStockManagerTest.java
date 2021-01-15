@@ -81,12 +81,12 @@ public class MyStockManagerTest {
 	@Tag("integracion")
 	@DisplayName("Prueba para el método de búsqueda de un producto")
 	public void testSearchProduct() {
-		assertTrue(MyStockManager.getInstance().searchProduct("noexiste").isEmpty(),"No debe encontrar un producto que no existe");
+		assertFalse(MyStockManager.getInstance().searchProduct("noexiste").isPresent(),"No debe encontrar un producto que no existe");
 		
 		Product product=new MyProduct("nuevoProducto",1);
 		MyStockManager.getInstance().addProduct(product);
 		
-		assertFalse(MyStockManager.getInstance().searchProduct("nuevoProducto").isEmpty(),"Optional no debe estar vacío");
+		assertTrue(MyStockManager.getInstance().searchProduct("nuevoProducto").isPresent(),"Optional no debe estar vacío");
 		assertEquals(product.toString(),MyStockManager.getInstance().searchProduct("nuevoProducto").get().toString(),"El objeto obtenido debe ser igual al introducido");
 	}
 	

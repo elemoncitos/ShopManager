@@ -8,7 +8,6 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
-    id 'java'
     //según https://github.com/junit-team/junit5-samples/blob/main/junit5-jupiter-starter-gradle/build.gradle
     id 'eclipse'
     //para poder publicar paquetes en github
@@ -54,9 +53,11 @@ dependencies {
 
     // Use JUnit5 test framework
     
-    //para usar la nueva plataforma de pruebas unitarias de java (jupiter)
-    testImplementation(platform('org.junit:junit-bom:5.7.0'))
-	testImplementation('org.junit.jupiter:junit-jupiter')
+    // Use JUnit Jupiter API for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 	  //Añado para usar mockito
     testCompile "org.mockito:mockito-core:2.+" 
     testCompile "org.mockito:mockito-junit-jupiter:2.+"
@@ -66,6 +67,7 @@ dependencies {
   //para usar la nueva plataforma de pruebas unitarias de java (jupiter)
 
 test {
+    description = "Ejecuta los tests"
 	useJUnitPlatform()
 	testLogging {
 		events "passed", "skipped", "failed"

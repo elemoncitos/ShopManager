@@ -9,6 +9,7 @@ package shopmanager;
  */
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Optional;
 import exceptions.NoEnoughStock;
 import exceptions.NotInStock;
@@ -94,5 +95,20 @@ public interface BagManager {
 	 * Inicializa la cesta a cero, borra todo lo que había restaurando el stock
 	 */
 	void reset();
+	/**
+	 * 
+	 * @return un iterador que recorre la cesta por orden de precio de mayor a menor
+	 */
+	Iterator<Product> getPrizeIterator();
+	/**
+	 * 
+	 * @return un iterador que recorre la cesta por orden del id
+	 */
+	Iterator<Product> getIdIterator();
+	/**
+	 * 
+	 * @return un iterador que recorre la cesta por número de unidades, de más a menos
+	 */
+	Iterator<Product> getUnitsIterator();
 
 }
