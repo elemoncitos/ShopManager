@@ -5,10 +5,9 @@ name: CalidadConSonar
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the Desarrollo branch
-  push:
-    branches: [ Desarrollo ]
+
   pull_request:
-    branches: [ Desarrollo ]
+    branches: [ BagManager ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,9 +26,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Ejecutando control de calidad con Sonar
+        run: echo Ejecutando Script de verificación de calidad del código
 
       - name: SonarCloud Scan
-        # You may pin to the exact commit or the version.
-        # uses: SonarSource/sonarcloud-github-action@32ea6119a4bd977dc6307acb6bbbf277152ede95
+      # You may pin to the exact commit or the version.
+      # uses: SonarSource/sonarcloud-github-action@32ea6119a4bd977dc6307acb6bbbf277152ede95
         uses: SonarSource/sonarcloud-github-action@v1.5

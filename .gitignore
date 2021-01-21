@@ -6,6 +6,9 @@
 
 # Ignore Gradle build output directory
 build
+# Ignorar el fichero de propiedades de gradle, porque tiene mi token personal
+gradle.properties
+
 # Compiled class file
 *.class
 

@@ -1,4 +1,4 @@
-package shopManager;
+package model;
 /**
  * 
  * @author Isabel Román
@@ -7,11 +7,26 @@ package shopManager;
  *
  */
 
-public interface Product {
+public interface Product{
 	
+	    /**
+	     * @param id identificador que se le quiere poner al producto
+	     */
 	    public void setId(String id);
+	    /**
+	     * 
+	     * @return devuelve el identificador del producto
+	     */
 	    public String getId();
+	    /**
+	     * 
+	     * @param number número de unidades del producto
+	     */
 	    public void setNumber(int number);
+	    /**
+	     * 
+	     * @return devuelve el número de unidades del producto
+	     */
 	    public int getNumber();
 	    /**
 	     * Suma uno
