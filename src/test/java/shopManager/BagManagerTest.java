@@ -280,7 +280,7 @@ class BagManagerTest {
 	@Test
 	@Tag("unidad")
 	@DisplayName("Prueba Iterador")
-    void test_iterador_mas_menos() throws NoEnoughStock, NotInStock 
+    void testGetUnitsIterator() throws NoEnoughStock, NotInStock 
 	{
 		//Inicializo los mocks
 		Mockito.when(producto1Mock.getId()).thenReturn("id1");
@@ -295,36 +295,14 @@ class BagManagerTest {
 		micestaTesteada.addProduct(producto3Mock);
 		Iterator<Product> iterador=micestaTesteada.getUnitsIterator();
 		//Pruebo que no esta vacia
-		if (!iterador.hasNext()) // Si no tiene siguiente, es porque esta vacia
-		{
-			fail("El iterador fue recibido vacio");
-		}
+		assertTrue(iterador.hasNext(), "El iterador esta vacio");
 		//Comprobamos que esten en orden de mayor a menor.
-		if (!(producto3Mock.getNumber()==iterador.next().getNumber()))
-		{
-			fail("El iterador no está ordenando correctamente (posicion1)");			
-		}
-		if (!iterador.hasNext()) // Si no tiene siguiente, es porque tiene un solo producto
-		{
-			fail("No se tienen todos los elementos que se metieron en la cesta");
-		}
-		if (!(producto2Mock.getNumber()==iterador.next().getNumber()))
-		{
-			fail("El iterador no está ordenando correctamente (posicion2)");			
-		}
-		if (!iterador.hasNext()) // Si no tiene siguiente, es porque tiene dos productos
-		{
-			fail("No se tienen todos los elementos que se metieron en la cesta");
-		}
-		if (!(producto1Mock.getNumber()==iterador.next().getNumber()))
-		{
-			fail("El iterador no está ordenando correctamente (posicion3)");			
-		}
-		if (iterador.hasNext()) // Si tiene siguiente, es porque tiene productos demas
-		{
-			fail("La cesta tiene mas productos de lo esperado");
-		}
-		//fail("Not yet implemented");
+		assertTrue(producto3Mock.getNumber()==iterador.next().getNumber(), "El primer producto debe de ser el 3");
+		assertTrue(iterador.hasNext(), "No se tienen todos los elementos que se metieron en la cesta");
+		assertTrue(producto2Mock.getNumber()==iterador.next().getNumber(), "El segundo producto debe de ser el 2");
+		assertTrue(iterador.hasNext(), "No se tienen todos los elementos que se metieron en la cesta");
+		assertTrue(producto1Mock.getNumber()==iterador.next().getNumber(), "El tercer producto debe de ser el 1");
+		assertFalse(iterador.hasNext(), "La cesta tiene mas productos de lo esperado");
 	}
 
 
