@@ -4,6 +4,7 @@
 package shopmanager;
 
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 import exceptions.NoEnoughStock;
 import exceptions.NotInStock;
 import exceptions.UnknownRepo;
+import model.IdComparator;
 import model.MyOrder;
 import model.Order;
 import model.Product;
@@ -127,7 +129,7 @@ public class MyBagManager implements BagManager {
 		cesta.clear();
 		
 	}
-	
+
 	@Override
 	public Iterator<Product> getUnitsIterator(){
 		// Ordena la cesta segun las unidades de producto y devuelve un tipo iterador
@@ -137,6 +139,12 @@ public class MyBagManager implements BagManager {
 		
 		return OrdenarCesta.listIterator();
 	}	
-	
+  	@Override
+	public Iterator<Product> getIdIterator() {
+		ArrayList<Product> productosEnCesta = new ArrayList<Product>(cesta.values());
+		Collections.sort(productosEnCesta, new IdComparator());
+		return productosEnCesta.listIterator();
+	}
+
 
 }
